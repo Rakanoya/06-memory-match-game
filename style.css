@@ -1,0 +1,176 @@
+/* General body style */
+body {
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  background-color: #FFF7EC; /* soft cream */
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Title styling */
+h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.5rem;
+  color: #FF6B6B; /* coral pink */
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+/* Game stats */
+#stats {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#stats span {
+  background: #E3DFFF; /* pastel lavender */
+  padding: 6px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(167, 216, 255, 0.15);
+}
+
+/* Game board grid */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 18px;
+  justify-content: center;
+  margin: 32px auto 0 auto;
+  max-width: 370px;
+}
+
+/* Card container */
+.card {
+  width: 80px;
+  height: 80px;
+  perspective: 600px;
+  cursor: pointer;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(167, 216, 255, 0.18), 0 1.5px 4px rgba(255, 107, 107, 0.08);
+  transition: box-shadow 0.2s, transform 0.2s;
+  background: transparent;
+  position: relative;
+}
+
+.card:hover:not(.flipped) {
+  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.18), 0 2px 8px rgba(167, 216, 255, 0.12);
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* Flip animation */
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card .card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* Shared card face styles */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  backface-visibility: hidden;
+  box-shadow: 0 2px 8px rgba(167, 216, 255, 0.10);
+  user-select: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Back face styling */
+.card-back {
+  background-color: #E3DFFF; /* pastel lavender */
+  color: #fff;
+  font-size: 2.2rem;
+  border: 2px solid #A7D8FF;
+}
+
+/* Front face (emoji side) */
+.card-front {
+  transform: rotateY(180deg);
+  background-color: #A7D8FF; /* pastel blue */
+  color: #333;
+  border: 2px solid #A7D8FF;
+}
+
+/* Matched card effect */
+.card.matched .card-front {
+  background-color: #B8F2D6 !important; /* mint green */
+  border: 2px solid #B8F2D6;
+  color: #2e7d5a;
+  box-shadow: 0 0 0 3px #B8F2D6, 0 2px 8px rgba(167, 216, 255, 0.10);
+}
+
+/* Message */
+#message {
+  margin-top: 24px;
+  font-size: 1.7rem;
+  font-family: 'Fredoka', sans-serif;
+  color: #28a745;
+  min-height: 2.2em;
+  letter-spacing: 1px;
+}
+
+/* Restart button */
+#restart-btn {
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  margin-top: 18px;
+  background-color: #FF6B6B; /* coral pink */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.10);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#restart-btn:hover {
+  background-color: #e55353;
+  transform: scale(1.04);
+}
+
+/* Responsive design for mobile */
+@media (max-width: 500px) {
+  #game-board {
+    grid-template-columns: repeat(4, 60px);
+    gap: 10px;
+    max-width: 260px;
+  }
+  .card {
+    width: 60px;
+    height: 60px;
+  }
+  .card-face {
+    font-size: 1.3rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  #restart-btn {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+  #stats {
+    font-size: 1rem;
+    gap: 12px;
+  }
+}
